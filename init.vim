@@ -18,6 +18,7 @@ call plug#begin()
   Plug 'sheerun/vim-polyglot'
 " https://github.com/neoclide/coc.nvim#quick-start
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -46,3 +47,7 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " https://github.com/airblade/vim-gitgutter#to-turn-on-line-highlighting-by-default
 let g:gitgutter_highlight_lines = 1
+
+inoremap <expr> <CR> pumvisible() ? coc#_select_confirm() : "\<CR>"
+
+let g:coc_node_path = trim(system('which node'))
